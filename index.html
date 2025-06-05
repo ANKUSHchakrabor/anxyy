@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secret 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
+      font-family: 'Short Stack', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-container {
+      background: #fff0f8;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+
+    .login-container:hover {
+      transform: scale(1.02);
+    }
+
+    .typewriter {
+      font-size: 28px;
+      color: #d63384;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(40, end) forwards;
+      border-right: 2px solid #d63384;
+      margin-bottom: 45px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    input[type="password"] {
+      padding: 14px 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #d63384;
+      background: #fff0f5;
+      outline: none;
+      width: 100%;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 14px 30px;
+      background-color: #d63384;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #c2185b;
+      transform: scale(1.03);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .fade-and-zoom {
+      animation: fadeZoomOut 1.2s forwards ease-in-out;
+    }
+
+    @keyframes fadeZoomOut {
+      to {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+    }
+
+    .twinkle {
+      animation: twinkle 1.5s ease-in-out infinite;
+      color: #ff1493;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff69b4,
+          0 0 30px #ff1493;
+        transform: scale(1);
+      }
+      50% {
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #d63384,
+          0 0 20px #c2185b;
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="typewriter" id="typewriterText">Hey Disha, pass pls?</div>
+    <input type="password" id="passInput" placeholder="Enter password" />
+    <button id="unlockBtn">💗 Unlock 💗</button>
+  </div>
+
+  <script>
+    const encodedPass = "MTMvMTEvMjAwOA=="; // "13/11/2008" base64
+    let attempts = 0;
+
+    function checkPass() {
+      const input = document.getElementById("passInput");
+      const typed = input.value.trim();
+      const btn = document.getElementById("unlockBtn");
+      const typeText = document.getElementById("typewriterText");
+
+      if (btoa(typed) === encodedPass) {
+        typeText.classList.add("twinkle");
+        input.disabled = true;
+        btn.disabled = true;
+
+        document.body.classList.add("fade-and-zoom");
+
+        setTimeout(() => {
+          window.location.href = "file:///D:/website%20-%20Copy/mainn.html";
+        }, 1200);
+      } else {
+        attempts++;
+
+        if (attempts >= 3) {
+          alert("😥 Too many wrong attempts Disha! Please take a break.");
+
+        } else {
+          alert(`❌ Wrong password 💔 Attempt ${attempts}/3`);
+        }
+if (attempts >= 4) {
+          alert("😥 hintt 00/00/0000.");
+
+        } else {
+          alert(`❌ Wrong password 💔 Attempt ${attempts}/4`);
+        }
+        input.value = "";
+        input.focus();
+      }
+    }
+
+    document.getElementById("unlockBtn").addEventListener("click", checkPass);
+    document.getElementById("passInput").addEventListener("keyup", function (e) {
+      if (e.key === "Enter") checkPass();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Love Notes ❤️</title>  
+  <link rel="stylesheet" href="style.css">  
+  <link href="https://fonts.googleapis.com/css2?family=Short+Stack&family=Homemade+Apple&display=swap" rel="stylesheet">  
+  <style>  
+    #nextBtn {  
+      position: fixed;  
+      bottom: 20px;  
+      right: 20px;  
+      background-color: #ff5fa2;  
+      color: white;  
+      padding: 12px 20px;  
+      border: none;  
+      border-radius: 10px;  
+      font-size: 16px;  
+      cursor: pointer;  
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  
+      z-index: 999;  
+    }  
+  
+    #videoSection {  
+      display: none;  
+      position: fixed;  
+      top: 50%;  
+      left: 50%;  
+      transform: translate(100%, -50%);  
+      background-color: rgba(255,255,255,0.95);  
+      padding: 30px;  
+      border-radius: 15px;  
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);  
+      z-index: 1000;  
+      max-width: 90%;  
+      max-height: 80%;  
+      opacity: 0;  
+      transition: all 1s ease;  
+      overflow: hidden;  
+    }  
+  
+    #videoSection.show {  
+      transform: translate(-50%, -50%);  
+      opacity: 1;  
+    }  
+  
+    #videoSection video {  
+      width: 100%;  
+      max-width: 400px;  
+      max-height: 70vh;  
+      border-radius: 10px;  
+      display: block;  
+      margin: 0 auto;  
+      object-fit: contain;  
+    }  
+  
+    .slide-out {  
+      animation: slideOut 0.8s forwards;  
+    }  
+  
+    @keyframes slideOut {  
+      to {  
+        opacity: 0;  
+        transform: translateX(-100%);  
+      }  
+    }  
+  </style>  
+</head>  
+<body>  
+  
+<audio id="bgMusic" autoplay loop>  
+  <source src="D:\website - Copy\03 - Tera Rastaa Chhodoon Na-(MyMp3Singer.com).mp3" type="audio/mpeg">  
+  Your browser does not support the audio element.  
+</audio>  
+  
+<div class="paper heart"></div>  
+  
+<div class="paper image" style="transform:rotate(90deg);">
+  <p>cgf</p>  
+  <img src="D:\website - Copy\images\495269520_1433497031163063_6418554914325746774_n.webp" style="transform:rotate(180deg);">
+</div>  
+  
+<div class="paper image">  
+  <p> and I fallen in</p> 
+     <img src="D:\website - Copy\images\494821008_560859857083150_4319070610396635176_n.webp" />  
+  <p>Love with You 😍 </p>  
+</div>   
+  
+<div class="paper image">  
+  <p>How can be </p> 
+    <img src="D:\website\images\494820925_613916134327267_2100328339140854096_n.jpg" /> 
+  <p> someone so cute ❤️ </p>    
+</div>  
+  
+<div class="paper red">  
+  <p>My favorite</p>
+  <img src="D:\website - Copy\images\494822082_1843397993172089_2343736962501136744_n.webp"  style="transform:rotate(-90deg);">
+  <p class="p2">Person 😍</p>     
+</div>  
+  
+<div class="paper">  
+  <p class="p1">You are Cute </p>  
+    <img src="D:\website - Copy\images\494823639_677288195070180_6151165161244064682_n.webp" />
+  <p class="p1">Amazing <span style="color: red !important;">❤️</span></p>  
+</div>  
+  
+<div class="paper">  
+  <p class="p1">Drag the papers to move!</p>  
+</div>  
+  
+<button id="nextBtn">Next ➜</button>  
+  
+<div id="videoSection">  
+  <video controls autoplay muted>  
+    <source src="D:\website - Copy1\website - Copy\images\New Project 153 [77867EA].mp4">  
+    Your browser does not support the video tag.  
+  </video>  
+</div>  
+  
+<script src="script.js"></script>  
+<script>  
+  // Autoplay background music  
+  window.addEventListener('DOMContentLoaded', () => {  
+    const audio = document.getElementById('bgMusic');  
+    audio.play().catch(() => {  
+      alert("Hey Disha, tap anywhere to start the music ❤️");  
+      document.body.addEventListener('click', () => {  
+        audio.play();  
+      }, { once: true });  
+    });  
+  });  
+  
+  // Next button: hide papers, stop music, show video & autoplay video  
+  document.getElementById("nextBtn").addEventListener("click", function () {  
+    const papers = document.querySelectorAll(".paper");  
+    papers.forEach((el, i) => {  
+      el.classList.add("slide-out");  
+      setTimeout(() => { el.style.display = "none"; }, 800);  
+    });  
+  
+    const audio = document.getElementById("bgMusic");  
+    audio.pause();  
+    audio.currentTime = 0;  
+  
+    const videoSec = document.getElementById("videoSection");  
+    videoSec.style.display = "block";  
+    setTimeout(() => {  
+      videoSec.classList.add("show");  
+
+      // Play video explicitly  
+      const video = document.querySelector("#videoSection video");  
+      video.play().catch((err) => {  
+        console.log("Autoplay blocked:", err);  
+      });  
+
+    }, 100);  
+  
+    this.style.display = "none";  
+  });  
+  
+  // Pause bg music when video plays manually (extra safety)  
+  const video = document.querySelector("#videoSection video");  
+  const bgMusic = document.getElementById("bgMusic");  
+  
+  video.addEventListener("play", () => {  
+    if (!bgMusic.paused) {  
+      bgMusic.pause();  
+    }  
+  });  
+</script>  
+  
+</body>  
+</html>
